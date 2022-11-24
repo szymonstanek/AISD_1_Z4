@@ -21,7 +21,7 @@ int main() {
             for (int j = 0; j < rozmiar; j++) {
                 cout << tablica[j] << " ";
 
-            }//test git
+            }
         }
 
     }
