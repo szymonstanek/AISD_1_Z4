@@ -27,6 +27,12 @@ int main() {
             const int rozmiar = 5;
             int tab1[rozmiar];
             int tab2[rozmiar];
+            //int d_rozmiar_tab1 = 0;
+            //int d_rozmiar_tab2 = 0;
+            int d_rozmiar_all = 0;
+            //int tab_mem[d_rozmiar_all];
+            int suma_tab1 = 0;
+            int suma_tab2 = 0;
             string MEM_S;
             for (int n=0;n<rozmiar;n++) {
                 cin >> MEM_S;
@@ -108,16 +114,31 @@ int main() {
             //    cout << tab2[i] << " ";
             //}
             //test
-            bool nequal = false;
-            for(int n=0; n<rozmiar; n++){ //blednie napisane, trzeba poprawic poniwaz nie sprawdza kolejnosci
-                if (tab1[n] != tab2[n])
-                    nequal = true;
-                else continue;
+            //poczatek starego rozwiazania z tablica chwilowa zawierajaca niepowtarzajace sie dac oraz tablica przechowywujaca ilosc powtorzen kazdej liczby (zbyt skomplikowane rozwiazanie)
+            /*for (int n=0; n<rozmiar; n++){
+                if (tab1[n] != tab1[n+1])
+                    d_rozmiar_tab1++;
+                cout << "rozmiar= " << d_rozmiar_tab1 <<" n= " << n << endl;
             }
-            if (nequal == true)
-                cout << "Equal" << endl;
+            for (int n=0; n<rozmiar; n++){
+                if (tab2[n] != tab2[n+1])
+                    d_rozmiar_tab2++;
+                cout << "rozmiar= " << d_rozmiar_tab2 <<" n= " << n << endl;
+            }
+            if (d_rozmiar_tab1 == d_rozmiar_tab2)
+                d_rozmiar_all = d_rozmiar_tab1;
             else
-                cout << "Not equal" << endl;
+               cout << "Not equal";*/
+            for (int i = 0; i <rozmiar ; i++) {
+                suma_tab1 = suma_tab1+tab1[i];
+                suma_tab2 = suma_tab2+tab2[i];
+
+            }
+            if (suma_tab1 == suma_tab2)
+                cout << "Equal";
+            else
+                cout << "Not equal";
+
         }
 
     }
