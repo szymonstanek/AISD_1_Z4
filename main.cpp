@@ -5,8 +5,8 @@ int main() {
     int wybor;
     cin >> wybor;
     switch (wybor) {
-        default:
-            cout<<"Blad ";
+        default:{
+            cout<<"Blad ";}
         case 1:{
             static const int rozmiar = 6;
             double tablica[rozmiar];
@@ -21,7 +21,7 @@ int main() {
             for (int j = 0; j < rozmiar; j++) {
                 cout << tablica[j] << " ";
 
-            }
+            }//test git
         }
 
     }
