@@ -140,6 +140,54 @@ int main() {
                 cout << "Not equal";
 
         }
+        case 3:{
+            string input;
+            bool blad_input = false;
+            cin >> input;
+            int MEM1 = 0;
+            int MEM2 = 0;
+
+            static const int I = 1;
+            static const int V = 5;
+            static const int L = 50;
+            static const int C = 100;
+            static const int M = 100;
+            static const int D = 500;
+            static const int X = 10;
+
+            for (int n=0; n<input.size(); n++){
+                if (input[n] == 'I'||
+                input[n] == 'V'||
+                input[n] == 'X' ||
+                input[n] == 'L'||
+                input[n] == 'C' ||
+                input[n] == 'M' ||
+                input[n] == 'D'){
+                    //cout << "Right input letter " << input[n] << endl;
+                    if(input[n] == input[n+1])
+                        MEM1 += input[n+1];
+                    else if (input[n]<input[n+1]){
+                        MEM1 -= input[n+1]-MEM1;
+                    }
+                    else if (input[n]>input[n+1]){
+                        int i=n;
+                        while (input[i+1]==input[i+2]){
+                            MEM2++;
+                            i++;
+                        }
+                        MEM1 += input[n+1]*MEM2;
+                    }
+                }else{
+                    cout << "Wrong input letter"<< endl;
+                    break;
+                }
+
+
+
+
+            }
+            cout << MEM1 << endl;
+        }
 
     }
     return 0;
