@@ -146,8 +146,10 @@ int main() {
             string input;
             bool ok = false;
             cin >> input;
-            int MEM1 = 0; // tylko dla powtarzajacych sie liczb
-            int MEM2 = 0;
+            int MEM1 = 0; // wartosc powtarzajacej sie
+            int MEM2 = 0; // ilosc powtarzajacych sie
+            int MEM_S =  0; //mem1*mem2
+            int suma = 0;
 
             static const int I = 1;
             static const int V = 5;
@@ -174,8 +176,7 @@ int main() {
 
 
             }
-            int rozmiar = input.size();
-            int MEM[rozmiar];
+            int MEM[input.size()];
             for (int n=0; n<input.size();n++){
                 if (input[n] == 'I')
                     MEM[n] = I;
@@ -192,27 +193,32 @@ int main() {
                 if (input[n] == 'L')
                     MEM[n] = L;
             }
-            for (int n=0; n<input.size()-1;n++){
-                if (MEM[n] == MEM[n+1]){
-                    MEM1 += MEM[n+1];
-                    cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;}
-                if (MEM[n]<MEM[n+1]){
-                    if (MEM1 != 0){
-                        MEM2 = MEM[n+1]-MEM1;
-                        MEM1 = 0;
-                        cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;
+            if (input.size() == 1)
+                cout << MEM[0];
+            else{
+                for (int n=0; n<input.size()-1; n++){
+                    if (MEM[n] == MEM[n+1]){
+                        //procedura zliczenia powtarzajacych sie;
+                        MEM1 = MEM[n];
+                        while (MEM[n] == MEM[n+1]){
+                            MEM2++;
+                            n++;
+                        }
+                        MEM_S = MEM1*MEM2;
                     }
-                    else if (MEM1 == 0){
-                        MEM2 = MEM[n+1]-MEM[n];
-                        cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;}
+                    else if (MEM[n]<MEM[n+1])
+                        suma += MEM[n+1]-MEM_S;
+                    else if (MEM[n]>MEM[n+1])
+                        suma += MEM[n+1]+MEM_S;
+                    else
+                        cout << "bbb" << endl;
+                    MEM1=0;
+                    MEM2=0;
                 }
-                if (MEM[n]>MEM[n+1]){
-                    MEM2 += MEM[n+1];
-                    cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;
-                }
-
-
+                cout <<suma << endl;
             }
+
+
         }
 
     }
