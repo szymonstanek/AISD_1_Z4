@@ -6,7 +6,9 @@ int main() {
     cin >> wybor;
     switch (wybor) {
         default:{
-            cout<<"Blad ";}
+            cout<<"Wrong task number! ";
+            return 0;
+        }
         case 1:{
             static const int rozmiar = 6;
             double tablica[rozmiar];
@@ -142,9 +144,9 @@ int main() {
         }
         case 3:{
             string input;
-            bool blad_input = false;
+            bool ok = false;
             cin >> input;
-            int MEM1 = 0;
+            int MEM1 = 0; // tylko dla powtarzajacych sie liczb
             int MEM2 = 0;
 
             static const int I = 1;
@@ -164,29 +166,53 @@ int main() {
                 input[n] == 'M' ||
                 input[n] == 'D'){
                     //cout << "Right input letter " << input[n] << endl;
-                    if(input[n] == input[n+1])
-                        MEM1 += input[n+1];
-                    else if (input[n]<input[n+1]){
-                        MEM1 -= input[n+1]-MEM1;
-                    }
-                    else if (input[n]>input[n+1]){
-                        int i=n;
-                        while (input[i+1]==input[i+2]){
-                            MEM2++;
-                            i++;
-                        }
-                        MEM1 += input[n+1]*MEM2;
-                    }
+                    continue;
                 }else{
-                    cout << "Wrong input letter"<< endl;
-                    break;
+                    cout << "Not roman number!"<< endl;
+                    return 0;
                 }
 
 
+            }
+            int rozmiar = input.size();
+            int MEM[rozmiar];
+            for (int n=0; n<input.size();n++){
+                if (input[n] == 'I')
+                    MEM[n] = I;
+                if (input[n] == 'V')
+                    MEM[n] = V;
+                if (input[n] == 'X')
+                    MEM[n] = X;
+                if (input[n] == 'M')
+                    MEM[n] = M;
+                if (input[n] == 'C')
+                    MEM[n] = C;
+                if (input[n] == 'D')
+                    MEM[n] = D;
+                if (input[n] == 'L')
+                    MEM[n] = L;
+            }
+            for (int n=0; n<input.size()-1;n++){
+                if (MEM[n] == MEM[n+1]){
+                    MEM1 += MEM[n+1];
+                    cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;}
+                if (MEM[n]<MEM[n+1]){
+                    if (MEM1 != 0){
+                        MEM2 = MEM[n+1]-MEM1;
+                        MEM1 = 0;
+                        cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;
+                    }
+                    else if (MEM1 == 0){
+                        MEM2 = MEM[n+1]-MEM[n];
+                        cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;}
+                }
+                if (MEM[n]>MEM[n+1]){
+                    MEM2 += MEM[n+1];
+                    cout << "MEM1= "<< MEM1 << "MEM2=" << MEM2 << endl;
+                }
 
 
             }
-            cout << MEM1 << endl;
         }
 
     }
