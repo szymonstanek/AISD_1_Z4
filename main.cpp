@@ -155,7 +155,7 @@ int main() {
             static const int V = 5;
             static const int L = 50;
             static const int C = 100;
-            static const int M = 100;
+            static const int M = 1000;
             static const int D = 500;
             static const int X = 10;
 
@@ -197,13 +197,14 @@ int main() {
                 cout << MEM[n] << " ";
             }
                 cout << " " << endl;
-            //for (int n=input.size()-1; n==0; n--){
-            //    cout << n << endl;
-            //    if (MEM[n-1]==MEM[n]){
-            //        LT=MEM[n];
-            //        LPR++;
-            //    }
-            //
+
+            if (MEM[input.size()-2] == MEM[input.size()-1]){
+                cout << "input -1 " << MEM[input.size()-1]<< endl;
+                cout << "input -2 " << MEM[input.size()-2]<< endl;
+// plan na zrobienie dalej 1.petla for do operacji zliczania i odejmowanie do najwiekszej 2. przesuniecie pętli do największej 3. petla sumujca
+
+            }
+
         }
 
     }
